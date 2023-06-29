@@ -655,6 +655,7 @@ interface RGBA {
   readonly b: number
   readonly a: number
 }
+declare type ColorSpec = string | RGB | RGBA
 interface FontName {
   readonly family: string
   readonly style: string
@@ -674,7 +675,7 @@ interface ArcData {
 }
 interface DropShadowEffect {
   readonly type: 'DROP_SHADOW'
-  readonly color: RGBA
+  readonly color: ColorSpec
   readonly offset: Vector
   readonly radius: number
   readonly spread?: number
@@ -684,7 +685,7 @@ interface DropShadowEffect {
 }
 interface InnerShadowEffect {
   readonly type: 'INNER_SHADOW'
-  readonly color: RGBA
+  readonly color: ColorSpec
   readonly offset: Vector
   readonly radius: number
   readonly spread?: number
@@ -704,7 +705,7 @@ interface Constraints {
 }
 interface ColorStop {
   readonly position: number
-  readonly color: RGBA
+  readonly color: ColorSpec
 }
 interface ImageFilters {
   readonly exposure?: number
@@ -717,7 +718,7 @@ interface ImageFilters {
 }
 interface SolidPaint {
   readonly type: 'SOLID'
-  readonly color: RGB
+  readonly color: ColorSpec
   readonly visible?: boolean
   readonly opacity?: number
   readonly blendMode?: BlendMode
@@ -770,13 +771,13 @@ interface RowsColsLayoutGrid {
   readonly sectionSize?: number
   readonly offset?: number
   readonly visible?: boolean
-  readonly color?: RGBA
+  readonly color?: ColorSpec
 }
 interface GridLayoutGrid {
   readonly pattern: 'GRID'
   readonly sectionSize: number
   readonly visible?: boolean
-  readonly color?: RGBA
+  readonly color?: ColorSpec
 }
 declare type LayoutGrid = RowsColsLayoutGrid | GridLayoutGrid
 interface ExportSettingsConstraints {
@@ -1036,7 +1037,7 @@ declare type OverlayBackground =
     }
   | {
       readonly type: 'SOLID_COLOR'
-      readonly color: RGBA
+      readonly color: ColorSpec
     }
 declare type OverlayBackgroundInteraction = 'NONE' | 'CLOSE_ON_CLICK_OUTSIDE'
 declare type PublishStatus = 'UNPUBLISHED' | 'CURRENT' | 'CHANGED'
@@ -1924,7 +1925,7 @@ interface BaseUser {
   readonly photoUrl: string | null
 }
 interface User extends BaseUser {
-  readonly color: string
+  readonly color: ColorSpec
   readonly sessionId: number
 }
 interface ActiveUser extends User {
